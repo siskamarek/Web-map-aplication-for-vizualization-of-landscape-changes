@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "leaflet": "^1.7.1",
     "parcel-bundler": "^1.12.5"
   }
 }

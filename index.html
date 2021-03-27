@@ -4,9 +4,74 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" 
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+   
+
+    
+    <title>MAP</title>
 </head>
 <body>
+    
+    <div id="map-wrapper">
+        <div id="map"></div>
+        <div id="dragable-map"></div>
+        <div id="dragable-strip"></div>
+    </div>
+
+    
+    <div id="layer-menu">
+    <i class="fas fa-arrow-down" ></i>
+    
+        <div id="hidden" hidden>
+        <div id="layers">
+            <div id="baseLayers">
+                <h3 style="color: rgb(35, 155, 24); font-family: Arial, Helvetica, sans-serif; text-decoration: underline;">Base layers</h3>
+                <div id="basicLayers">
+                    <p id="baseMap" class="basicLayer">Open street map</p>
+                    <p id="googleMaps" class="basicLayer">ortofoto (google)</p>
+                    <p id="ZM" class="basicLayer">Basic map (ZBGis)</p>
+                </div>
+                <div id="selectedLayers">
+                <hr>
+                </div>
+                <div class="select">
+                    <button class="selectBtn">Choose Layers</button>
+                    <div class="layers">
+                        <p class="layersBtn" id="freeMap">Free map</p>
+                        <p class="layersBtn" id="ortoUGKK"> ortofoto 2017-2019 (SAZP)</p>
+                        <p class="layersBtn" id="freeMap">Free map</p>
+                        <p class="layersBtn" id="freeMap">Free map</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div id="overlayLayers">
+                <h3 style="color: rgb(35, 155, 24); font-family: Arial, Helvetica, sans-serif; text-decoration: underline;">Overlay layers</h3>
+                <div id="basicOLs">
+                    <p id="IVM" class="basicOL">I. vojenské mapovanie</p>
+                    <p id="IIVM" class="basicOL">II. vojenské mapovanie</p>
+                    <p id="IIIVM" class="basicOL">III. vojenské mapovanie</p>
+                </div>
+    
+                <div id="selectedLayers">
+                    <hr>
+                    </div>
+                    <div class="select">
+                        <button class="selectBtn">Choose Layers</button>
+                        <div class="layers">
+                            <p class="layersBtn" id="freeMap">Free map</p>
+                            <p class="layersBtn" id="ortoUGKK"> ortofoto 2017-2019 (SAZP)</p>
+                            <p class="layersBtn" id="freeMap">Free map</p>
+                            <p class="layersBtn" id="freeMap">Free map</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    
     <script src="./index.js"></script>
+   
 </body>
 </html>
