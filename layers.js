@@ -20,7 +20,7 @@ transparent: true,
 
 freeMap: tileLayer("https://outdoor.tiles.freemap.sk/{z}/{x}/{y}.jpg"),
   //ortofoto 2017-2019 (SAZP)
-ortoUGKK: L.tileLayer.wms(
+ortoUGKK: tileLayer.wms(
   "https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
   {
     layers: "1,2,3",
@@ -87,7 +87,7 @@ IIIVMr: tileLayer.wms("http://tiles.geop.sazp.sk/base/service",
     pane: "IIIVMr",
   }),
 
-IVVM: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service",
+IVVM: tileLayer.wms("http://tiles.geop.sazp.sk/base/service",
   {
     layers: "sazp_vojenske_mapovanie_IV",
     crs: CRS.EPSG4326,
@@ -96,7 +96,7 @@ IVVM: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service",
     pane: "IVVM",
   }),
 
-IVVMr: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service",
+IVVMr: tileLayer.wms("http://tiles.geop.sazp.sk/base/service",
   {
     layers: "sazp_vojenske_mapovanie_IVr",
     crs: CRS.EPSG4326,
@@ -107,6 +107,57 @@ IVVMr: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service",
 
 };
    
+export const overlays={
+  DMR: tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_dmr3_wms/service.svc/get",
+  {
+    layers: "0,1,2",
+    format: "image/png",
+    transparent: true,
+    pane: "DMR",
+  }),
+
+  Lidar: tileLayer("https://dmr5.tiles.freemap.sk/{z}/{x}/{y}.png"),
+
+  Nazvoslovie: tileLayer.wms(
+    "https://zbgisws.skgeodesy.sk/zbgis_geograficke_nazvoslovie_wms/service.svc/get",
+    {
+      layers: "0,1,2,3,4,5",
+      format: "image/png",
+      transparent: true,
+      pane: "Nazvoslovie",
+    }
+  ),
+
+  ParcelyC: tileLayer.wms(
+    "https://kataster.skgeodesy.sk/eskn/services/NR/kn_wms_norm/MapServer/WmsServer?",
+    {
+      layers: "2,3,4,5,6,7,8,11,12,13,14,15",
+      format: "image/png",
+      transparent: true,
+      pane:"ParcelyC",
+    }
+  ),
+
+  ParcelyE: tileLayer.wms(
+    "https://kataster.skgeodesy.sk/eskn/services/NR/uo_wms_norm/MapServer/WmsServer?",
+    {
+      layers: "0,3,4,5",
+      format: "image/png",
+      transparent: true,
+      pane: "ParcelyE",
+    }
+  ),
+
+  ESRI: tileLayer(
+      "https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer/0",
+      {
+        layers: "World Hillshade",
+        format: "image/png",
+        transparent: true,
+        pane: "ESRI",
+      }
+  ),
+};
 
       
 

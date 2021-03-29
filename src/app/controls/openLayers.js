@@ -1,7 +1,6 @@
-import  {layerGroup} from "leaflet"
-
+import  {layerGroup, map} from "leaflet"
 import {layers} from "../../../layers"
-
+import {Lmap} from "../../../createMap"
 
 export function openBaseL(){
    const baseLayers= document.getElementsByClassName("basicLayer");
@@ -13,6 +12,7 @@ export function openBaseL(){
 
     let activeBaseL;
     let button;
+    
 
     function onLayerClick(event){
         const layerId=event.target.id;
@@ -20,20 +20,78 @@ export function openBaseL(){
         if(activeBaseL!=null && activeBaseL!=''){
 
             activeBaseL.remove();
-            layerBtn.style.color="black";
+            
+            button.style.color="black";
         };
 
         activeBaseL=layers[layerId];
-        console.log(activeBaseL);
+        
         let baseMap=layers.baseMap;
-        console.log(baseMap);
+        
         let merged = layerGroup([baseMap, activeBaseL]);
-        console.log(merged);
+        
         button=event.target;
         button.style.color="blue";
-        //console.log(map);
-        const map=document.getElementById("map");
-        merged.addTo(map);
-        console.log(map);
+        
+        Lmap.addLayer(merged);
+                
     };
 };
+
+export function openOverlayL(){
+    const overlayLayers = document.getElementsByClassName("basicOL");
+
+    for(const overlayLayer of overlayLayers){
+        overlayLayer.addEventListener("click", onOLClick)
+    }
+}
+export let activeOL;
+let button;
+let layerId;
+function onOLClick(event){
+     layerId = event.target.id;
+    const toggleDrag=document.getElementById("toggleDrag");
+    const toggleOpacity=document.getElementById("toggleOpacity");
+
+
+    if(activeOL!=null && activeOL!=''){
+        Lmap.removeLayer(activeOL);
+        
+        if(layerId!="NONE"){button.style.color="black"};
+        document.getElementById("NONE").style.color="rgba(197, 82, 82, 0.979)";
+    }
+
+    if(layerId!="NONE"){
+        activeOL=layers[layerId];
+
+        Lmap.createPane(layerId);
+        Lmap.getPane(layerId).style.zIndex=649;
+        activeOL.addTo(Lmap);
+
+        button=event.target;
+        button.style.color="blue";
+        toggleDrag.style.display="block";
+        toggleOpacity.style.display="block";
+
+        const opacity = document.querySelector("#opacity-tool").value;
+        activeOL.setOpacity(opacity);
+        
+    }
+    else{
+        button.style.color="black";
+        document.getElementById(layerId).style.color="red";
+        toggleDrag.style.display="none";
+        
+        toggleOpacity.style.display="none";
+        
+    }
+}
+
+export function getActiveOl(){
+    if(!activeOL){throw new Error("overlay was not found");}
+    return activeOL;
+}
+
+export function getLayerId(){
+    return layerId;
+}

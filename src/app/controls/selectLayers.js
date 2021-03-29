@@ -11,7 +11,7 @@ function toggleLayer(event){
     const layerBtn = event.target;
     const layerId = event.target.id;
     const layerName = event.target.textContent;
-    const choosedLayer = choosedLayersContainer.innerHTML="<p class='choosed-Layers' id='"+layerId+"1'"+ ">"+layerName+"</p><i class='fas fa-arrow-down'></i>";
+    choosedLayersContainer.innerHTML="<p class='choosed-Layers' id='"+layerId+"1'"+ ">"+layerName+"</p><i class='fas fa-times'></i>";
 
     layerBtn.style.display="none";
 }};
