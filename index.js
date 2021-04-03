@@ -1,7 +1,7 @@
 import "leaflet/dist/leaflet.css";
 import "@fortawesome/fontawesome-free";
 import "./style.css";
-
+import "./src/app/timeLine-style.css"
 import {createBasicMap} from "./createMap";
 import {toggleHidden} from "./src/app/controls/controls"
 import {selectLayers} from "./src/app/controls/selectLayers"
@@ -11,6 +11,9 @@ import { openOverlays } from "./src/app/controls/openOverlays";
 import { setViewTool} from "./src/app/handleSetView";
 import { createMeasureTool } from "./src/app/createMeasureTool";
 import {createOpacity} from "./src/app/createOpacity"
+import { createTimeline } from "./src/app/createTimeline";
+
+//import {createToolbar} from "./src/app/createToolbar"
 //import {openBaseL} from "./createMap"
 //const myMap=map("map", {}).setView([48.5, 19.5], 8);
 createBasicMap();
@@ -23,3 +26,5 @@ openOverlays();
 setViewTool();
 createMeasureTool();
 createOpacity();
+//createToolbar();
+createTimeline();

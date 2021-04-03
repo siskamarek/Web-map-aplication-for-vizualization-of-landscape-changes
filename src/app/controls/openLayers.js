@@ -2,6 +2,8 @@ import  {layerGroup, map} from "leaflet"
 import {layers} from "../../../layers"
 import {Lmap} from "../../../createMap"
 
+
+let activeBaseL;
 export function openBaseL(){
    const baseLayers= document.getElementsByClassName("basicLayer");
 
@@ -10,7 +12,7 @@ export function openBaseL(){
         baseLayer.addEventListener("click", onLayerClick)
     }
 
-    let activeBaseL;
+    
     let button;
     
 
@@ -88,10 +90,14 @@ function onOLClick(event){
 }
 
 export function getActiveOl(){
-    if(!activeOL){throw new Error("overlay was not found");}
+    //if(!activeOL){throw new Error("overlay was not found");}
     return activeOL;
 }
 
 export function getLayerId(){
     return layerId;
+}
+
+export function getActiveBaseL(){
+    return activeBaseL;
 }

@@ -72,7 +72,10 @@ export function toggleLayerSlider(basemap) {
     bindLayerSliderEvents(false);
     basemap.unsync(draggableMap);
     draggable.style.display = "none";
+    draggable.style.right=0;
+
     draggableMapElement.style.display = "none";
+    draggableMapElement.style.width=100+"vw";
     layerSliderToggled = false;
     activeOverlay.addTo(basemap);
   }

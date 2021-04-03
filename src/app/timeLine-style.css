@@ -24,6 +24,7 @@
     cursor: pointer;
     z-index: 3;
     position: relative;
+    pointer-events: none;
 }
 #selector{
     height: 104px;
@@ -35,17 +36,19 @@
     z-index: 2 ;
    
 }
+
 #selectBtn {
     height: 48px;
     width: 44px;
-    /*background-image: url(./icon.png);*/
+    background-image: url(../timeline-icon.png);
     background-size: cover ;
     background-position: center;
     border-radius: 50%;
     position:absolute;
     bottom: 0;
-   
+   /*cursor: pointer;*/
 }
+
 #selectValue{
     width: 40px ;
     height: 40px;
@@ -68,4 +71,5 @@
     bottom: -16px;
     left: 0;
 }
+
 

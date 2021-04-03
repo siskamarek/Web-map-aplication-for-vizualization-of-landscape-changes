@@ -4,6 +4,8 @@ import {control} from "leaflet"
 import { toggleLayerSlider } from "./src/app/layerSlider";
 import {getActiveOl } from "./src/app/controls/openLayers";
 import "leaflet.sync";
+
+
 export let Lmap=leafletMap("map").setView([48.5, 19.5], 8);
 
 export function createBasicMap(){
