@@ -39,6 +39,12 @@ body {
     text-decoration: underline;
     cursor: pointer;
 }
+.selectOL:hover{
+    cursor: pointer;
+    color: rgb(171, 217, 223);
+    text-decoration: underline;
+
+}
 
 #selectArrow:hover {
     cursor: pointer;

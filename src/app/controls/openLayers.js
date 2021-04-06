@@ -41,53 +41,80 @@ export function openBaseL(){
 };
 
 export function openOverlayL(){
-    const overlayLayers = document.getElementsByClassName("basicOL");
-
-    for(const overlayLayer of overlayLayers){
-        overlayLayer.addEventListener("click", onOLClick)
-    }
+    const overlayLayers = document.querySelector("#basicOLs");
+ 
+    overlayLayers.addEventListener("click", onOLClick);
 }
-export let activeOL;
-let button;
-let layerId;
+
+export  let activeOL;
+        let item;
+        let layerId;
+
 function onOLClick(event){
-     layerId = event.target.id;
+    
     const toggleDrag=document.getElementById("toggleDrag");
     const toggleOpacity=document.getElementById("toggleOpacity");
 
+if(event.target.classList[0]!=="close"){
 
     if(activeOL!=null && activeOL!=''){
+        
         Lmap.removeLayer(activeOL);
         
-        if(layerId!="NONE"){button.style.color="black"};
+        if(layerId!="NONE"){item.style.color="black"};
         document.getElementById("NONE").style.color="rgba(197, 82, 82, 0.979)";
-    }
-
-    if(layerId!="NONE"){
-        activeOL=layers[layerId];
-
-        Lmap.createPane(layerId);
-        Lmap.getPane(layerId).style.zIndex=649;
-        activeOL.addTo(Lmap);
-
-        button=event.target;
-        button.style.color="blue";
-        toggleDrag.style.display="block";
-        toggleOpacity.style.display="block";
-
-        const opacity = document.querySelector("#opacity-tool").value;
-        activeOL.setOpacity(opacity);
         
     }
-    else{
-        button.style.color="black";
-        document.getElementById(layerId).style.color="red";
-        toggleDrag.style.display="none";
-        
-        toggleOpacity.style.display="none";
-        
+
+    item=event.target;
+
+    if(item.classList[0]==="basicOL"){
+
+    layerId = item.id;
+
     }
-}
+
+    if(item.classList[0]==="selectOL"){
+
+        layerId=item.id.replace("11", "");
+
+    }
+           
+        if(layerId!="NONE"){
+            if(item.classList[0]!=="close"){
+            activeOL=layers[layerId];
+
+            item.style.color="blue";
+
+            
+            toggleOpacity.style.display="block";
+            toggleDrag.style.display="block";
+            
+            Lmap.createPane(layerId);
+            Lmap.getPane(layerId).style.zIndex=648;
+            activeOL.addTo(Lmap);
+
+            const opacity = document.querySelector("#opacity-tool").value;
+            activeOL.setOpacity(opacity);
+            console.log(layerId);
+            };
+        }
+        else{
+            if(item.classList[0]!=="close"){
+            item.style.color="black";
+            document.getElementById(layerId).style.color="red";
+            
+            toggleDrag.style.display="none";
+            toggleOpacity.style.display="none";
+            }
+        };
+    
+    } 
+    else {
+        return;
+    }
+
+};
 
 export function getActiveOl(){
     //if(!activeOL){throw new Error("overlay was not found");}

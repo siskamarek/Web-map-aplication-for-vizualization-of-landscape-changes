@@ -1,25 +1,62 @@
 import { Lmap } from "../../../createMap";
 import { layers } from "../../../layers";
-import { getActiveBaseL } from "./openLayers";
+import { getActiveBaseL, getActiveOl, getLayerId } from "./openLayers";
 
 export function selectLayers(){
-const  layersSelect=document.getElementsByClassName("layersBtn");
-const  choosedLayersContainer=document.getElementById("selectedLayers");
+
+const baseLSelect=document.querySelector(".layers");
+const  baseLContainer=document.getElementById("basicLayers");
+
 const  overlaySelect=document.querySelector(".overlay-layers");
-const selectedOLContainer=document.querySelector("#selectedOL");
-for(const layerSelect of layersSelect){
-    layerSelect.addEventListener("click", toggleLayer);
-}
+const OLContainer=document.querySelector("#basicOLs");
 
-choosedLayersContainer.addEventListener("click", removeItem);
+baseLSelect.addEventListener("click", toggleBaseL);
+baseLContainer.addEventListener("click", removeBaseL);
+
 overlaySelect.addEventListener("click", toggleOverlayL);
-selectedOLContainer.addEventListener("click", openOL)
+OLContainer.addEventListener("click", removeOL);
 
-let layerId;
-let layerBtn;
+function toggleBaseL(e){
+    const item = e.target; 
+    const layerId = item.id;
+    
+    const layerName=item.textContent;
+    const newElement=document.createElement("div");
 
+    item.style.display="none";
 
-function toggleLayer(event){
+    newElement.innerHTML="<p id='"+layerId+"2' class='selectBaseL'>"+layerName+" <i class='close fas fa-times'></i>";
+
+    console.log(newElement);
+    baseLContainer.appendChild(newElement);
+
+};
+
+function removeBaseL(e){
+    const item = e.target; 
+    console.log(item);
+    const element = item.parentElement;
+    console.log(element);
+    const elementId= element.id;
+    console.log(elementId);
+    const selectionElementId=elementId.replace('2', '');
+    const selectionElement=document.getElementById(selectionElementId);
+    //const activeId = getLayerId();
+    
+    //remove item 
+    if(item.classList[0]==="close"){
+        element.style.display="none";
+        selectionElement.style.display="block";
+
+        /*if(activeId==normalId){
+            Lmap.removeLayer(layers[normalId]);
+
+        }*/
+        
+    }
+};
+
+/*function toggleLayer(event){
      layerBtn = event.target;
      layerId = event.target.id;
     const layerName = event.target.textContent;
@@ -53,7 +90,7 @@ function removeItem(e){
         Lmap.addLayer(layers[targetLayer]);
         item.style.color="blue";
     }
-};
+};*/
 
 
 function toggleOverlayL(e){
@@ -65,8 +102,8 @@ function toggleOverlayL(e){
 
     selectElement.style.display="none";
 
-    newElement.innerHTML="<p id='"+overlayId+"1'>"+layerName+" <i id='"+overlayId+"2' class='close fas fa-times'></i>";
-    selectedOLContainer.appendChild(newElement);
+    newElement.innerHTML="<p id='"+overlayId+"1' class='selectOL'>"+layerName+" <i id='"+overlayId+"2' class='close fas fa-times'></i>";
+    OLContainer.appendChild(newElement);
 
     console.log(overlayId.replace("1", ""));
     console.log(newElement);
@@ -78,17 +115,25 @@ function toggleOverlayL(e){
     console.log(overlayId);
 };
 
-function openOL(e){
+function removeOL(e){
     const item = e.target; 
     const element = item.parentElement;
     const elementId= element.id;
     const selectionElementId=elementId.replace('1', "");
     const selectionElement=document.getElementById(selectionElementId);
+    const normalId = selectionElementId.replace('1', '');
+    const activeId = getLayerId();
     
     //remove item 
     if(item.classList[0]==="close"){
         element.style.display="none";
         selectionElement.style.display="block";
+
+        if(activeId==normalId){
+            Lmap.removeLayer(layers[normalId]);
+
+        }
+        
     }
 }
 
