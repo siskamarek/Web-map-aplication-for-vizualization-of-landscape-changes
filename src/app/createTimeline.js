@@ -1,6 +1,7 @@
+import { map } from "leaflet";
 import { Lmap } from "../../createMap";
 import { layers } from "../../layers";
-import { getActiveBaseL, getActiveOl } from "./controls/openLayers";
+import { activeOL, getActiveBaseL, getActiveOl } from "./controls/openLayers";
 
 export function createTimeline(){
 const slider = document.getElementById("slider");
@@ -9,6 +10,9 @@ const selectValue = document.getElementById("selectValue");
 const toggleTimeline=document.querySelector("#timeLine-chcecbox");
 const timeLineTool=document.querySelector("#timeline");
 const selectBtn=document.querySelector("#selectBtn");
+let activeLayer=layers.googleMaps;
+let layerName;
+let year=2019;
 const yearLabels = [
     {
         year: '2019',
@@ -48,9 +52,13 @@ const yearLabels = [
         layerId: "IVM"
     },
     {
-        year: '1910',
-        layerId: 1
-    }
+        year: '1787',
+        layerId: "IVM"
+    },
+    {
+        year: '1787',
+        layerId: "IVM"
+    },
 ];
 
 toggleTimeline.addEventListener("change", (e)=>{
@@ -63,58 +71,58 @@ toggleTimeline.addEventListener("change", (e)=>{
         timeLineTool.style.display="block";
         if(activeBaseL!=null && activeBaseL !=''){Lmap.removeLayer(activeBaseL)};
         if(activeOL!=null && activeOL !=''){Lmap.removeLayer(activeOL)};
-        //slider.value=0;
-        selectValue.innerHTML=yearLabels[0].year;
-        Lmap.addLayer(layers.googleMaps);
+        slider.value=0;
+        
+        selectValue.innerHTML=year;
+        Lmap.addLayer(activeLayer);
     }
     else{
         timeLineTool.style.display="none";
-        Lmap.removeLayer(layers.googleMaps);
+        Lmap.removeLayer(activeLayer);
         if(activeBaseL)Lmap.addLayer(activeBaseL);
         if(activeOL)Lmap.addLayer(activeOL);
+        slider.value=0;
 
     }
-})
-/*let dragging=false;
-let x ;
-
-selectBtn.addEventListener("mousedown", mouseDownCallback);
-timeLineTool.addEventListener("mousemove", mouseMoveCallback);
-window.addEventListener("mouseup", mouseUpCallback);
-
-function mouseDownCallback(e){
-if(!dragging){
-    dragging=true;
-    x= e.screenX;
-};
-};
-function mouseMoveCallback(e){
-    if(dragging){
-        //let actualX=e.screenX-x;
-        selector.style.left=`${e.offsetX}px`;
-        console.log(e);
-    }
-};
-function mouseUpCallback(e){
-    if(dragging){dragging=false};
-};*/
-
+});
 
 
 slider.oninput = function () {
-    selectValue.innerHTML = yearLabels[this.value].year;
+    year=yearLabels[this.value].year;
+    selectValue.innerHTML = year
     selector.style.left = (this.value*10) + '%';
 
     // Otvor mapu pre rok
     
-        const layerName=yearLabels[this.value].layerId;
+       
         
-        Lmap.addLayer(layers[layerName]);
+        
+        if(this.value<=2){
+            Lmap.removeLayer(activeLayer);
+
+            //getActiveBaseL()=layers[layerName];
+            
+            layerName=yearLabels[this.value].layerId;
+            activeLayer=layers[layerName];
+            Lmap.addLayer(activeLayer);
+
+        }
+        else{
+            //getActiveOL()=layers[layerName];
+            
+            //const previousLayer=yearLabels[(this.value)-1].layerId;
+            //Lmap.removeLayer(layers[previousLayer]);
+            Lmap.removeLayer(activeLayer);
+            layerName=yearLabels[this.value].layerId;
+            activeLayer=layers[layerName];
+            
+
+            Lmap.createPane(layerName);
+            Lmap.getPane(layerName).style.zIndex=649;
+            Lmap.addLayer(activeLayer);
+
+        }
  
-
-
-        //const layerName = yearLabels[this.value].layerId;
-        //setLayer(layerName);
 }
 }
 

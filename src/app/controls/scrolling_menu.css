@@ -12,7 +12,7 @@
     display: inline-block;
   }
   
-  .layers {
+  .layers, .overlay-layers {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -21,7 +21,7 @@
     z-index: 4;
   }
   
-  .layersBtn {
+  .layersBtn, .overlayBtn {
     color: black;
     padding: 5px 5px;
     text-decoration: none;
@@ -29,8 +29,8 @@
     
   }
   
-  .layersBtn:hover {background-color: #ddd; cursor: pointer;}
+  .layersBtn:hover, .overlayBtn:hover {background-color: #ddd; cursor: pointer;}
   
-  .select:hover .layers {display: block;}
+  .select:hover .layers, .select:hover .overlay-layers {display: block;}
   
   .select:hover .selectBtn {background-color: #169b43;}
