@@ -8,17 +8,23 @@ baseMap: tileLayer(
     {
       attribution:
         '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+      pane: "baseMap",
     }
   ),
   //ortofoto (google)
-googleMaps: tileLayer("http://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"),
+googleMaps: tileLayer("http://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
+  pane: "googleMaps",
+}),
 
 ZBGIS: tileLayer("https://zbgisws.skgeodesy.sk/zbgis_wmts_new/service.svc/get?", {
 format: "image/png",
 transparent: true,
+pane: "ZBGIS",
 }),
 
-freeMap: tileLayer("https://outdoor.tiles.freemap.sk/{z}/{x}/{y}.jpg"),
+freeMap: tileLayer("https://outdoor.tiles.freemap.sk/{z}/{x}/{y}.jpg" ,{
+  pane: "freeMap",
+}),
   //ortofoto 2017-2019 (SAZP)
 ortoUGKK: tileLayer.wms(
   "https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
@@ -26,10 +32,13 @@ ortoUGKK: tileLayer.wms(
     layers: "1,2,3",
     format: "image/png",
     transparent: true,
+    pane: "ortoUGKK",
   }
 ),
   //ortofoto (mapy.CZ)
-mapyCZ: tileLayer("https://mapserver.mapy.cz/bing/{z}-{x}-{y}"),
+mapyCZ: tileLayer("https://mapserver.mapy.cz/bing/{z}-{x}-{y}",{
+  pane: "mapyCZ",
+}),
   //ortofoto 2010 (SAZP)
 orto2010: tileLayer.wms("http://tiles.geop.sazp.sk/base/service?",
   {
@@ -37,6 +46,7 @@ orto2010: tileLayer.wms("http://tiles.geop.sazp.sk/base/service?",
     crs: CRS.EPSG4326,
     format:"image/png",
     transparent: true,
+    pane: "orto2010",
   }),
   //Basic map
 ZM: tileLayer.wms("https://zbgisws.skgeodesy.sk/ZMSR_wms/service.svc/get",
@@ -44,7 +54,7 @@ ZM: tileLayer.wms("https://zbgisws.skgeodesy.sk/ZMSR_wms/service.svc/get",
     layers: "1,2,3",
     format: "image/png",
     transparent: true,
-    //pane: "ZM",
+    pane: "ZM",
   }),
 
 

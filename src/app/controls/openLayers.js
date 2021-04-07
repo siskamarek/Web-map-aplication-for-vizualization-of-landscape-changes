@@ -3,11 +3,59 @@ import {layers} from "../../../layers"
 import {Lmap} from "../../../createMap"
 
 
+
 let activeBaseL;
 export function openBaseL(){
-   const baseLayers= document.getElementsByClassName("basicLayer");
+    const baseLayers= document.querySelector("#basicLayers");
 
-    for(const baseLayer of baseLayers)
+    baseLayers.addEventListener("click", onBaseLClick);
+
+    let targetItem;
+    let targetLayerId; 
+    let prevItem;
+
+    const baseMap = layers.baseMap;
+
+    function onBaseLClick(e){
+        targetItem = e.target;
+        if(targetItem.classList[0]==="selectBaseL"){
+            targetLayerId=targetItem.id.replace("2", "");
+            openTargetLayer(targetLayerId, e);
+        }
+
+        else if(targetItem.classList[0]==="basicLayer"){
+            targetLayerId=targetItem.id;
+            openTargetLayer(targetLayerId, e)}
+        else{return};
+    };
+
+
+    function openTargetLayer(id, event){
+
+        if(activeBaseL){
+            Lmap.removeLayer(activeBaseL);
+            prevItem.style.color="black";
+        };
+
+        activeBaseL = layers[id];
+        prevItem = event.target;
+        
+        prevItem.style.color="blue";
+
+        //let mergedLayers = layerGroup([baseMap, activeBaseL]);
+
+        Lmap.createPane(targetLayerId);
+        Lmap.getPane(targetLayerId).style.zIndex=2;
+        //let mergedLayers = layerGroup([baseMap, activeBaseL]);
+        activeBaseL.addTo(Lmap);
+        //Lmap.addLayer(activeBaseL);
+
+
+        console.log(targetItem.id);
+    }
+
+
+    /*for(const baseLayer of baseLayers)
     {
         baseLayer.addEventListener("click", onLayerClick)
     }
@@ -37,7 +85,7 @@ export function openBaseL(){
         
         Lmap.addLayer(merged);
                 
-    };
+    };*/
 };
 
 export function openOverlayL(){
@@ -58,6 +106,7 @@ function onOLClick(event){
 if(event.target.classList[0]!=="close"){
 
     if(activeOL!=null && activeOL!=''){
+
         
         Lmap.removeLayer(activeOL);
         
@@ -92,11 +141,12 @@ if(event.target.classList[0]!=="close"){
             
             Lmap.createPane(layerId);
             Lmap.getPane(layerId).style.zIndex=648;
-            activeOL.addTo(Lmap);
-
+            //activeOL.addTo(Lmap);
+            Lmap.addLayer(activeOL);
             const opacity = document.querySelector("#opacity-tool").value;
             activeOL.setOpacity(opacity);
             console.log(layerId);
+
             };
         }
         else{

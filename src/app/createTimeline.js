@@ -74,6 +74,8 @@ toggleTimeline.addEventListener("change", (e)=>{
         slider.value=0;
         
         selectValue.innerHTML=year;
+        Lmap.createPane("googleMaps");
+        Lmap.getPane("googleMaps").style.zIndex=2;
         Lmap.addLayer(activeLayer);
     }
     else{
@@ -97,7 +99,7 @@ slider.oninput = function () {
        
         
         
-        if(this.value<=2){
+        /*if(this.value<=2){
             Lmap.removeLayer(activeLayer);
 
             //getActiveBaseL()=layers[layerName];
@@ -107,7 +109,7 @@ slider.oninput = function () {
             Lmap.addLayer(activeLayer);
 
         }
-        else{
+        else{*/
             //getActiveOL()=layers[layerName];
             
             //const previousLayer=yearLabels[(this.value)-1].layerId;
@@ -121,7 +123,7 @@ slider.oninput = function () {
             Lmap.getPane(layerName).style.zIndex=649;
             Lmap.addLayer(activeLayer);
 
-        }
+       // }
  
 }
 }

@@ -8,9 +8,12 @@ import "leaflet.sync";
 
 export let Lmap = leafletMap("map").setView([48.5, 19.5], 8);
 
+
 export function createBasicMap() {
 
     const baseMap = layers.baseMap;
+    Lmap.createPane("baseMap");
+    Lmap.getPane("baseMap").style.zIndex=1;
     baseMap.addTo(Lmap);
     control.scale().addTo(Lmap);
 }

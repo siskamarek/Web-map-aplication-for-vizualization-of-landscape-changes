@@ -34,7 +34,7 @@ body {
     border-radius: 0.25rem;
 }
 
-#basicLayers>p:hover, #basicOLs>p:hover {
+#basicLayers>p:hover, .basicOL:hover, .selectBaseL:hover {
     color: rgb(171, 217, 223);
     text-decoration: underline;
     cursor: pointer;

@@ -2,6 +2,7 @@ import { map as leafletMap } from "leaflet";
 import {Lmap} from "../../createMap"
 import "leaflet.sync";
 import { getActiveOl, getLayerId } from "./controls/openLayers";
+
 function bindLayerSliderEvents(toggle) {
   let dragging = false;
   const draggable = document.getElementById("draggable");
