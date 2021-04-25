@@ -1,7 +1,9 @@
 import { map } from "leaflet";
 import { Lmap } from "../../createMap";
 import { layers } from "../../layers";
-import { activeOL, getActiveBaseL, getActiveOl } from "./controls/openLayers";
+import { activeOL, addAvtiveOLToMap, getActiveBaseL, getActiveOl, i } from "./controls/openLayers";
+
+let yearLabels;
 
 export function createTimeline(){
 const slider = document.getElementById("slider");
@@ -13,7 +15,7 @@ const selectBtn=document.querySelector("#selectBtn");
 let activeLayer=layers.googleMaps;
 let layerName;
 let year=2019;
-const yearLabels = [
+ yearLabels = [
     {
         year: '2019',
         layerId: "googleMaps",
@@ -71,14 +73,20 @@ toggleTimeline.addEventListener("change", (e)=>{
         timeLineTool.style.display="block";
         if(activeBaseL!=null && activeBaseL !=''){Lmap.removeLayer(activeBaseL)};
         if(activeOL!=null && activeOL !=''){Lmap.removeLayer(activeOL)};
+        if(!i){
         slider.value=0;
         
         selectValue.innerHTML=year;
         Lmap.createPane("googleMaps");
         Lmap.getPane("googleMaps").style.zIndex=2;
         Lmap.addLayer(activeLayer);
+        }
+        else {
+            addAvtiveOLToMap(yearLabels[i].layerId);
+            
+        }
     }
-    else{
+    else {
         timeLineTool.style.display="none";
         Lmap.removeLayer(activeLayer);
         if(activeBaseL)Lmap.addLayer(activeBaseL);
@@ -86,14 +94,22 @@ toggleTimeline.addEventListener("change", (e)=>{
         slider.value=0;
 
     }
+
+    
 });
 
 
 slider.oninput = function () {
-    year=yearLabels[this.value].year;
-    selectValue.innerHTML = year
-    selector.style.left = (this.value*10) + '%';
+   
+        year=yearLabels[this.value].year;
+        selectValue.innerHTML = year
+        selector.style.left = (this.value*10) + '%';
+ 
+    
+        
+   
 
+    
     // Otvor mapu pre rok
     
        
@@ -123,10 +139,21 @@ slider.oninput = function () {
             Lmap.getPane(layerName).style.zIndex=649;
             Lmap.addLayer(activeLayer);
 
+            if(i){
+                addAvtiveOLToMap(yearLabels[this.vlaue].layerId);
+                Lmap.removeLayer(activeLayer);
+                i=false;
+            }
+
        // }
  
 }
+
+
 }
 
-    
+export function getYearLabels(){
+    return yearLabels;
+};
+
     
