@@ -23,10 +23,10 @@
   
   .layersBtn, .overlayBtn {
     color: black;
-    padding: 5px 5px;
+    padding: 10px 5px;
     text-decoration: none;
     display: block;
-    
+    margin: 0;
   }
   
   .layersBtn:hover, .overlayBtn:hover {background-color: #ddd; cursor: pointer;}

@@ -1,3 +1,4 @@
+import "normalize.css";
 import "@fortawesome/fontawesome-free";
 import "leaflet/dist/leaflet.css";
 import { createBasicMap } from "./createMap";

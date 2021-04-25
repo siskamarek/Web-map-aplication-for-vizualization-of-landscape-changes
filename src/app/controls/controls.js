@@ -1,17 +1,24 @@
-//open menu
+// Open or close menu
+document.addEventListener('toggleMenu', () => {
+  const menuDiv = document.getElementById('layer-menu');
+  if (menuDiv.classList.contains('menu-toggled')) {
+    menuDiv.classList.remove('menu-toggled');
+    return;
+  }
 
-const menuDiv = document.getElementById("layer-menu");
+  menuDiv.classList.add('menu-toggled');
+});
 
 export function toggleMenu() {
   document
     .getElementById("close-menu-icon")
-    .addEventListener("click", function () {
-      menuDiv.classList.remove("menu-toggled");
+    .addEventListener("click", () => {
+      document.dispatchEvent(new Event('toggleMenu'));
     });
 
   document
     .getElementById("open-menu-icon")
-    .addEventListener("click", function () {
-        menuDiv.classList.add("menu-toggled");
+    .addEventListener("click", () => {
+      document.dispatchEvent(new Event('toggleMenu'));
     });
 }

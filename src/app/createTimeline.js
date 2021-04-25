@@ -71,6 +71,7 @@ toggleTimeline.addEventListener("change", (e)=>{
 
     if(checked){
         timeLineTool.style.display="block";
+        document.dispatchEvent(new Event('toggleMenu'));
         if(activeBaseL!=null && activeBaseL !=''){Lmap.removeLayer(activeBaseL)};
         if(activeOL!=null && activeOL !=''){Lmap.removeLayer(activeOL)};
         if(!i){
