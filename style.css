@@ -48,6 +48,7 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: auto;
+  flex: 1;
 }
 
 #baseLayers,
@@ -93,7 +94,7 @@ body {
   position: absolute;
   background: white;
   top: 0.75rem;
-  left: 5rem;
+  left: 3.5rem;
   padding: 0.5rem;
   z-index: 650;
   border-radius: 0.25rem;
@@ -101,7 +102,31 @@ body {
   box-shadow: 0 0 2px rgb(0 0 0 / 25%);
   display: flex;
   border-color: cornflowerblue;
-  
+}
+
+
+@media screen and (max-width: 767px) {
+  #input {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    row-gap: 0.25rem;
+    column-gap: 0.25rem;
+    align-items: center;
+  }
+
+  #input .label-lng {
+    grid-column: 1;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  #input {
+    column-gap: 0;
+  }
+
+  #input .submit {
+    grid-column: 1;
+  }
 }
 
 

@@ -21,10 +21,10 @@
   <div id="coordSearch">
     <form action="/" id="input">
       <label for="lat">Latitude</label>
-      <input type="text" id="lat" name="lat" autocomplete="off" /><br />
-      <label for="long">Longitude</label><br />
-      <input type="text" id="long" name="long" autocomplete="off" /><br />
-      <input type="submit" value="Submit" />
+      <input type="text" id="lat" name="lat" autocomplete="off" />
+      <label for="long" class="label-lng">Longitude</label>
+      <input type="text" id="long" name="long" autocomplete="off" />
+      <input type="submit" value="Submit" class="submit" />
     </form>
   </div>
 
@@ -42,9 +42,9 @@
     </div>
   </div>
 
-  <div id="open-menu-icon"><i  class="fas fa-layer-group" style="color: aliceblue"></i></div>
+  <div id="open-menu-icon"><i class="fas fa-layer-group" style="color: aliceblue"></i></div>
   <div id="layer-menu" class="layer-menu">
-    <i id="close-menu-icon" class="fas fa-window-close" ></i>
+    <i id="close-menu-icon" class="fas fa-window-close"></i>
 
     <div id="layers">
       <div id="baseLayers">
@@ -58,7 +58,7 @@
         <div id="basicLayers">
           <p id="baseMap" class="basicLayer">Open street map</p>
           <p id="googleMaps" class="basicLayer">ortofoto (google)</p>
-          <p id="ZM" class="basicLayer">Basic map (ZBGis)</p>
+          <p id="ZM" class="basicLayer">Basic map (ZBGIS - old)</p>
         </div>
 
         <div id="toggleTimeLine" style="
@@ -78,9 +78,9 @@
           <button class="selectBtn">Choose Layers</button>
           <div class="layers">
             <p class="layersBtn" id="freeMap">Hiking map</p>
-            <p class="layersBtn" id="ortoUGKK">ortofoto 2017-2019 (UGKK)</p>
+            <p class="layersBtn" id="ortoUGKK">ortofoto 2017 (ZBGIS)</p>
             <p class="layersBtn" id="ZBGIS">ZBGIS map</p>
-            <p class="layersBtn" id="ortoUGKK">Ortofoto 2019 (UGKK)</p>
+            <p class="layersBtn" id="orto2010">ortofoto 2010 (SAZP)</p>
             <p class="layersBtn" id="mapyCZ">Ortofoto (MAPY.cz)</p>
             <p class="layersBtn" id="IVM">I. vojenské mapovanie</p>
             <p class="layersBtn" id="IIVM">II. vojenské mapovanie</p>
@@ -148,11 +148,12 @@
           <div class="overlay-layers">
             <p class="overlayBtn" id="baseMap1">Open street map</p>
             <p class="overlayBtn" id="googleMaps1">ortofoto (google)</p>
-            <p class="overlayBtn" id="ZM1">Basic map (ZBGis)</p>
+            <p class="overlayBtn" id="ZM1">Basic map (ZBGIS - old)</p>
             <p class="overlayBtn" id="freeMap1">Hiking map</p>
             <p class="overlayBtn" id="ZBGIS1">ZBGIS map</p>
-            <p class="overlayBtn" id="ortoUGKK1">ortofoto 2017-2019 (UGKK)</p>
+            <p class="overlayBtn" id="ortoUGKK1">ortofoto 2017 (ZBGIS)</p>
             <p class="overlayBtn" id="mapyCZ1">Ortofoto (MAPY.cz)</p>
+            <p class="overlayBtn" id="orto20101">ortofoto 2010 (SAZP)</p>
             <p class="overlayBtn" id="IIIVMr1">
               III. vojenské mapovanie <br />
               (reambulované)
@@ -166,7 +167,7 @@
         </div>
       </div>
 
-      
+
       <div class="select">
         <i class="fas fa-bars" id="toggleOverlays"></i>
         <div id="overlays" hidden>
@@ -191,7 +192,7 @@
           <p>
             <label>
               <input class="overlay" type="checkbox" value="DMR" />
-              DMR (UGKK)
+              DMR (ZBGIS)
             </label>
           </p>
           <p>
@@ -200,12 +201,7 @@
               Tieňovaný model (Lidar)
             </label>
           </p>
-          <p>
-            <label>
-              <input class="overlay" type="checkbox" value="ESRI" />
-              Tieňovaný model (Global)
-            </label>
-          </p>
+          
         </div>
       </div>
     </div>
